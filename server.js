@@ -8,7 +8,7 @@ app.engine("handlebars", exphbs({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
 
 app.get("/", function (req, res) {
-  res.send("Hello World")
+  res.render("home")
 })
 
 app.listen(process.env.PORT || 3000, (req, res) => {
