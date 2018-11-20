@@ -18,6 +18,7 @@ app.use(expressValidator());
 // Connecting controllers
 const posts = require("./controllers/posts.js")(app);
 const subreddits = require("./controllers/subreddits.js")(app);
+const comments = require("./controllers/comments.js")(app);
 
 
 // // Mock Post Model

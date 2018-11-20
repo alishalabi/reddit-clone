@@ -36,8 +36,9 @@ module.exports = app => {
   // HTTP Protocol: Show One
   app.get("/posts/:id", (req, res) => {
     Post.findById(req.params.id)
-      .then(post => {
-        res.render("posts-show", { post })
+      .populate("comments")
+        .then(post => {
+          res.render("posts-show", { post })
       })
       .catch(err => {
         console.log(err.message);
