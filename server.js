@@ -1,3 +1,6 @@
+// Conntectiong Data (MongoDB)
+require('./data/reddit-db');
+
 // Requiring middleware
 const express = require("express")
 const exphbs = require("express-handlebars")
@@ -15,6 +18,7 @@ app.use(expressValidator());
 // Connecting controllers
 const posts = require("./controllers/posts.js")(app);
 
+
 // // Mock Post Model
 // let posts = [
 //   { title: "Alpha", url: "www.aaa.com", summary: "A Summary" },
@@ -22,7 +26,7 @@ const posts = require("./controllers/posts.js")(app);
 // ]
 
 // HTTP Action: Index
-app.get("/posts", (req, res) => {
+app.get("/", (req, res) => {
   res.render("posts-index", { posts: posts })
 })
 
