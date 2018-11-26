@@ -2,14 +2,18 @@
   <div class="container-fluid">
 
     <div class="navbar-header">
-      <h2>Reddit Clone!</h2>
+      <h2><a href="/">Reddit Clone!</a></h2>
     </div>
 
     <!-- Navbar: Login/Sign-up -->
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/logout">Logout</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/sign-up">Sign Up</a></li>
+      {{#if currentUser}}
+        <li><a href="/posts/new">New Post</a></li>
+        <li><a href="/logout">Logout</a></li>
+      {{else}}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/sign-up">Sign Up</a></li>
+      {{/if}}
     </ul>
 
     <!-- Navbar: New Post  -->

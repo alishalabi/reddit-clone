@@ -11,6 +11,19 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken")
 const app = express()
 
+// Custom middleware: Checking Login Status
+const checkAuth = (req, res, next) => {
+  console.log("Checking authencation");
+  if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
+    req.user = null
+  } else {
+    const token = req.cookies.nToken
+    const decodedToken = jwt.decode(token, { complete: true}) || {};
+    req.user = decodedToken.payload;
+  }
+  next();
+}
+
 // Integrating middleware
 app.engine("handlebars", exphbs({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
@@ -18,6 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
+app.use(checkAuth);
 
 // Connecting controllers
 const posts = require("./controllers/posts.js")(app);

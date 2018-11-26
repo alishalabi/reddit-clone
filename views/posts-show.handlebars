@@ -10,6 +10,7 @@
     </form>
     {{#each post.comments}}
       {{this.content}}
+      <p> by {{this.author}}</p>
     {{/each}}
   </div>
 </div>
