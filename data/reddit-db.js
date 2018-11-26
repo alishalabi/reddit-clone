@@ -16,7 +16,7 @@ mongoose.connect(
   // }
   // Adding Connection Script and Supporting Connection Error Handling and Promises
   url,
-  { useMongoClient: true }
+  { useNewUrlParser: true }
 );
 mongoose.connection.on("error", console.error.bind(console, "MongoDB connection Error:"));
 mongoose.set("debug", true);

@@ -7,7 +7,7 @@ module.exports = (app) => {
         res.render("posts-index.handlebars", {posts})
       })
       .catch(err => {
-        console.logd(err.data)
+        console.log(err.data)
       })
   })
 }

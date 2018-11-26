@@ -1,7 +1,18 @@
 const Post = require("../models/post")
+const Comment = require("../models/comment")
 
 module.exports = app => {
 
+
+  // app.get("/posts", (req, res) => {
+  //   Post.find({})
+  //     .then(posts => {
+  //       res.render("posts-index", { posts })
+  //     })
+  //     .catch(err => {
+  //       console.log(err.message);
+  //     })
+  // })
 
   // HTTP Protocol: Index
   app.get("/", (req, res) => {
