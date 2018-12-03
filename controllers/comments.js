@@ -5,6 +5,7 @@ module.exports = (app) => {
 
   // HTTP Protocol: Create
   app.post("/posts/:postId/comments", (req, res) => {
+    const currentUser = req.user
     if (req.user) {
       const comment = new Comment (req.body);
       comment.author = req.user._id
@@ -12,7 +13,7 @@ module.exports = (app) => {
       comment
         .save()
         .then(comment => {
-          Post.findById(req.post._id);
+          Post.findById(req.user._id);
         })
         .then(post => {
           post.comments.unshift(comment)
