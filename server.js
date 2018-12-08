@@ -20,6 +20,7 @@ const checkAuth = (req, res, next) => {
     const token = req.cookies.nToken
     const decodedToken = jwt.decode(token, { complete: true}) || {};
     req.user = decodedToken.payload;
+    console.log("else")
   }
   next();
 }

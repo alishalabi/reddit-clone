@@ -1,0 +1,13 @@
+<h3><a href="/admin">Admin Page</a></h3>
+
+<h1>{{grape.name}}</h1>
+<h2>{{grape.type}}</h2>
+<p>{{grape.pairings}}</p>
+<!-- <p>{{grape.image}}</p> -->
+<img src={{grape.image}} alt="Image" height="100px" width="100px"/>
+
+
+<p><a href="/admin/grapes/{{grape._id}}/edit">Edit Grape</a></p>
+<p><form method="POST" action="/admin/grapes/{{grape._id}}?_method=DELETE">
+  <button type="submit">Delete Grape</button>
+</form></p>

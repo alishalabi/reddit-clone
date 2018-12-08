@@ -31,12 +31,14 @@ module.exports = app => {
 
   // HTTP Protocol: New
   app.get("/posts/new", (req, res) => {
+    var currentUser = req.user
     console.log('Rendering forms')
-    res.render("posts-new", {})
+    res.render("posts-new", { currentUser })
   })
 
   // HTTP Protocol: Create
   app.post("/posts", (req, res) => {
+    var currentUser = req.user
     // Only logged in user can create new posts
     if (req.user) {
       // INSTANTIATE INSTANCE OF POST MODEL
@@ -65,10 +67,10 @@ module.exports = app => {
 
   // HTTP Protocol: Show One
   app.get("/posts/:id", (req, res) => {
+    var currentUser = req.user
     Post.findById(req.params.id)
-      .populate("comments")
-        .then(post => {
-          res.render("posts-show", { post })
+      .then(post => {
+        res.render("posts-show", { post, currentUser })
       })
       .catch(err => {
         console.log(err.message);

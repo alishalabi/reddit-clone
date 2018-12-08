@@ -1,9 +1,9 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post")
+const User = require("../models/user")
 
 module.exports = (app) => {
 
-  // HTTP Protocol: Create
   app.post("/posts/:postId/comments", (req, res) => {
     const currentUser = req.user
     if (req.user) {
@@ -13,7 +13,7 @@ module.exports = (app) => {
       comment
         .save()
         .then(comment => {
-          Post.findById(req.user._id);
+          return Post.findById(req.params.postId);
         })
         .then(post => {
           post.comments.unshift(comment)
