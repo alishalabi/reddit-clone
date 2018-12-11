@@ -5,8 +5,9 @@ const Post = require("./post")
 
 const CommentSchema = new Schema ({
   content: { type: String, required: true },
-  author : { type: Schema.Types.ObjectId, ref: "User" },
-  post: { type: Schema.Types.ObjectId, ref: "Post"}
+  // author : { type: Schema.Types.ObjectId, ref: "User" },
+  // post: { type: Schema.Types.ObjectId, ref: "Post"}
+  comments: [{type: Schema.Types.ObjectId, ref: "Comment"}]
 });
 
 module.exports = mongoose.model("Comment", CommentSchema);

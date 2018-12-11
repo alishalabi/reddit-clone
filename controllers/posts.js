@@ -69,8 +69,9 @@ module.exports = app => {
   app.get("/posts/:id", (req, res) => {
     var currentUser = req.user
     Post.findById(req.params.id)
-      .then(post => {
-        res.render("posts-show", { post, currentUser })
+      // .populate("comments")
+        .then(post => {
+          res.render("posts-show", { post, currentUser })
       })
       .catch(err => {
         console.log(err.message);
