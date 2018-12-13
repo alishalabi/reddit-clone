@@ -78,4 +78,26 @@ module.exports = app => {
       })
   })
 
+  // HTTP Protocol: AJAX for Vote Up
+  app.put("/posts/:id/vote-up", function(req, res) {
+    Post.findById(req.params.id).exec(function(err, post) {
+      post.upVotes.push(req.user._id);
+      post.voteScore = post.voteTotal + 1;
+      post.save();
+
+      res.status(200);
+    });
+  });
+
+  // HTTP Protocol: AJAX for Vote Down
+  app.put("/posts/:id/vote-down", function(req, res) {
+    Post.findById(req.params.id).exec(function(err, post) {
+      post.downVotes.push(req.user._id);
+      post.voteScore = post.voteTotal - 1;
+      post.save();
+
+      res.status(200);
+    });
+  });
+
 }

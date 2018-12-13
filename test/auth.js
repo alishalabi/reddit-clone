@@ -1,12 +1,14 @@
-var chai = require("chai");
-var chaiHttp = require("chai-http");
-var server = require("../server");
-var should = chai.should();
+const chai = require("chai");
+const chaiHttp = require("chai-http");
+const server = require("../server");
+const User = require("../models/user");
+const should = chai.should();
+
 chai.use(chaiHttp);
 
-var agent = chai.request.agent(server);
+const agent = chai.request.agent(server);
 
-var User = require("../models/user");
+
 
 describe("User", function() {
   it("should not be able to login if they have not registered", done => {

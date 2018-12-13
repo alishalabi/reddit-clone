@@ -22,15 +22,23 @@ module.exports = (app) => {
       //     res.redirect("/posts/" + post._id);
 
       // Post-Refactor
-      console.log('hi')
       Post.findById(req.params.postId)
         .exec(function(err, post) {
-          post.comments.unshift(req.body)
-          post.save()
-          return res.redirect(`/posts/` + post._id)
+          const comment = new Comment(req.body)
+          // Should create new comment collection
+          comment.save().then((newComment) => {
+            post.comments.unshift(newComment._id)
+            post.save().then(() => {
+              res.redirect(`/posts/` + post._id) 
+            }).catch((err) => {
+              console.error(err)
+            })
+          }).catch((err) => {
+            console.error(err)
+          })
         })
     } else {
-      return res.status(401);
+      res.status(401);
     }
   })
 }

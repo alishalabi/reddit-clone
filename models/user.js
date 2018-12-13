@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Autopopulate = require('../utils/autopopulate');
 const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 
@@ -8,8 +9,9 @@ const UserSchema = new Schema ({
   password: { type: String, select: false },
   username: { type: String, required: true },
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
-  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }] 
-})
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
+}).pre('findOne', Autopopulate('comments'))
+	.pre('find', Autopopulate('comments'));
 
 UserSchema.pre("save", function(next) {
   const now = new Date();

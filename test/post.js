@@ -1,7 +1,16 @@
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const Post = require("../models/post")
+const server = require("../server")
 const should = chai.should()
+
+const Post = require("../models/post")
+
+const post = {
+  title: "post",
+  url: "https://www.google.com",
+  summary: "flare summary",
+}
+
 
 describe("Posts", () => {
   it("should create with valid attributes at POST /posts", done => {
@@ -11,8 +20,8 @@ describe("Posts", () => {
         const post = { title: "post title", url: "https://www.google.com", summary: "post summary" };
 
         chai
-          .request("localhost:8000")
-          .post("/posts/new")
+          .request("localhost:3000")
+          .post("/posts")
           .send(post)
           .then(res => {
             Post.find(function(err, posts) {

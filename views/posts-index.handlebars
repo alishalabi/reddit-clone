@@ -5,14 +5,24 @@
     <ul>
       {{#each posts}}
       <li class="list-group-item">
+
         <div class="">
           <a href="/posts/{{this._id}}" class="lead">{{this.title}}</a>
           <p> by {{this.author.username}}</p>
         </div>
+
         <a href="{{this.url}}" target="_blank">{{this.url}}</a>
         <div class="text-right">
           <a href="/n/{{this.subreddit}}">{{this.subreddit}}</a>
         </div>
+
+        <form class="vote-up" data-id="{{post._id}}">
+          <button type="submit">Vote Up</button>
+        </form>
+
+        <form class="vote-down" data-id="{{post._id}}">
+          <button type="submit">Vote Down</button>
+        </form>
       </li>
       {{/each}}
     </ul>

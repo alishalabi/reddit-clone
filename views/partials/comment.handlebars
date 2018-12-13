@@ -4,3 +4,10 @@
     {{> comment}}
   {{/each }}
 </div>
+
+{{this}}
+"BReak point"
+{{@root.post.id}}
+<a href="/posts/{{this.id}}/comments/{{this.comments._id}}/replies/new">Reply</a>
+{{this._id}}
+{{this.comments._id}}
